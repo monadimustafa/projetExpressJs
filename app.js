@@ -17,17 +17,24 @@ app.get('/get-transaction/:id',(req,res)=>{
   res.json(transactions.get_transaction(id))
   
 })
-app.get('/html/transaction/:id',(req,res)=>{
-  let id = req.params.id
-  let result = transactions.get_transaction(id)
-  res.send(view.DisplayTransaction(result))
-})
 
 app.post('/add-transaction',(req,res)=>
 {
     nom_client = req.body.nom_client
     montant = req.body.montant
     transactions.new_transction(nom_client,montant)
+})
+app.get('/html/transaction/:id',(req,res)=>{
+  let id = req.params.id
+  let result = transactions.get_transaction(id)
+  res.send(view.DisplayTransaction(result))
+})
+app.get('/html/transactions',(req,res)=>{
+  let results = transactions.get_transactions()
+  res.send(view.DisplayAllTransactions(results))
+})
+app.get('/html/addTransaction',(req,res)=>{
+ res.send(view.addTransaction())
 })
 
 app.listen(port, () => {

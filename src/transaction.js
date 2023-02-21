@@ -1,7 +1,7 @@
 var transactions = [
-    {nom_client:"c1", montant: 1200},
-    {nom_client:"c2", montant: 1300},
-    {nom_client:"c3", montant: 1400},
+    {id:1, nom_client:"c1", montant: 1200, dateE:"12/12/2023",emetteur:"emetteur CliPri", destinataire:"destinataire CliPri"},
+    {id:2, nom_client:"c2", montant: 1300, dateE:"12/11/2023",emetteur:"emetteur CliPri", destinataire:"destinataire CliPri"},
+    {id:3, nom_client:"c3", montant: 1400, dateE:"12/10/2023",emetteur:"emetteur CliPri", destinataire:"destinataire CliPri"},
 ]
 
 function get_transactions(){
@@ -10,14 +10,16 @@ function get_transactions(){
 
 function get_transaction(transaction_number)
 {
+    transaction_number = transaction_number-1
     return transactions[transaction_number];
 }
 
-function new_transction(customer_name, amount)
+function new_transction(customer_name, amount, dateE, emetteur ,destinataire)
 {
-    let newTransact = {nom_client:customer_name,montant:amount}
+    let newTransact = {nom_client:customer_name,montant:amount, dateE, emetteur, destinataire}
     transactions.push(newTransact)
 }
+
 
 module.exports.get_transactions= get_transactions
 module.exports.get_transaction= get_transaction
